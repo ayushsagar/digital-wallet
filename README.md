@@ -8,6 +8,8 @@ Given a list of transactions between two users (batch data), determine trustwort
 * Rule/Feature 2: Check for triadic closure / 2nd degree relationship 
 * Rule/Feature 3: Check for transitive closure of at most 4 degrees. i.e. check if two parties are connected by at most 3 people in between.
 
+For each transaction we return "trusted" if one of the above rules satisfy and "unverified" otherwise. We apply one rule at a time on the streaming data and save into respective files: output1.txt, output2.txt and so on.
+
 ## Approach
 ### 1. Graph Construction
 A social network can be represented by a graph. Each node can represent a person. Any transaction between two persons would connect their respective nodes. This connection is called an edge. Let V be the set of nodes or vertices in this graph and E be the set of edges.
