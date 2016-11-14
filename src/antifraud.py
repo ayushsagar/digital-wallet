@@ -131,35 +131,33 @@ def processStream(graph, inputStreamFile, outputStreamFile, feature, skipHeader=
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
+    def processAll(batch_input, stream_input, output_folder):
+        print "Constructing graph from batch file...", 
+        start_time = time.time()
+        graph = Graph(batch_input, True)
+        print("%s sec" % (time.time() - start_time))
+        
+        for feature in [1,2,3]:
+            stream_output = output_folder + "/output" + str(feature) + ".txt"
+            print "Processing stream file and saving feature %d output..." %feature, 
+            start_time = time.time()
+            lineCount = processStream(graph, stream_input, stream_output, feature)
+            print("%0.4s sec total, %.12f sec per transaction (avg)" % (time.time() - start_time, (time.time() - start_time)/float(lineCount)))    
+
+    if len(sys.argv) == 4:
         batch_input = sys.argv[1]
         stream_input = sys.argv[2]
+        output_folder = sys.argv[3]
+        processAll(batch_input, stream_input, output_folder)
+
+    elif len(sys.argv) == 2:
+        batch_input = "../insight_testsuite/tests/" + sys.argv[1] + "/paymo_input/batch_payment.txt"
+        stream_input = "../insight_testsuite/tests/" + sys.argv[1] + "/paymo_input/stream_payment.txt"
+        output_folder = "../insight_testsuite/tests/" + sys.argv[1] + "/paymo_output/"
+        processAll(batch_input, stream_input, output_folder)
+    
 
     else:
-        print "Batch and stream input file names not specified, assuming its presence in ../paymo_input folder"
-        batch_input = "../paymo_input/batch_payment.csv"
-        stream_input = "../paymo_input/stream_payment.csv"
-        stream_output1 = "../paymo_output/output1.txt"
-        stream_output2 = "../paymo_output/output2.txt"
-        stream_output3 = "../paymo_output/output3.txt"
-    
-    print "Constructing graph from batch file...", 
-    start_time = time.time()
-    graph = Graph(batch_input, True)
-    print("%s sec" % (time.time() - start_time))
-    
-    print "Processing stream file and saving feature 1 output...", 
-    start_time = time.time()
-    lineCount = processStream(graph, stream_input, stream_output1, feature = 1)
-    print("%0.4s sec total, %.12f sec per transaction" % (time.time() - start_time, (time.time() - start_time)/float(lineCount)))
-
-    print "Processing stream file and saving feature 2 output...", 
-    start_time = time.time()
-    lineCount = processStream(graph, stream_input, stream_output2, feature = 2)
-    print("%0.4s sec total, %.12f sec per transaction" % (time.time() - start_time, (time.time() - start_time)/float(lineCount)))
-
-    print "Processing stream file and saving feature 3 output...", 
-    start_time = time.time()
-    lineCount = processStream(graph, stream_input, stream_output3, feature = 3)
-    print("%0.4s sec total, %.12f sec per transaction" % (time.time() - start_time, (time.time() - start_time)/float(lineCount)))
-    
+        print "Usage 1: specify batch, input file and output folder\nSyntax:\n\tpython antifraud.py <batch payment file> <stream payment file> <output path>\ne.g.\n\tpython antifraud.py ../paymo_input/batch_payment.csv ../paymo_input/stream_payment.csv ../paymo_output\n"
+        print "Usage 2: specify test case folder name inside insight_testsuit/tests folder\nSyntax:\n\tpython antifraud.py <test case name>\ne.g.\n\tpython antifraud.py test-2-graph-search"
+        
