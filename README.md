@@ -1,5 +1,5 @@
 # Submission for Insight Data Engineering Challenge Jan 2017
-## An optimized and scalable fraud detection module for Paymo using on IDDFS on hashmap adjacency-list based graph representation 
+## An optimized and scalable fraud detection module for Paymo using Iterative Deepening DFS on Hashmap adjacency-list based graph representation 
 
 ## Problem
 Given a list of transactions between two users (batch data), determine trustworthiness of given transaction (streaming data) using 3 different rules:
