@@ -123,28 +123,7 @@ The time complexity is O(*b*^*d*) and space-complexity is O(*b***d*). *b* is the
 
 The implementation can be used to implement feature 1 and 2 with d = 1 and 2 respectively.
 
-
-##Usage
-The following module implements the functionality on **Python 2.7**:
-
-	\src\antifraud.py
-
-Syntax 1: specify batch, input file and output folder
-
-	python antifraud.py <batch payment file> <stream payment file> <output path>
-
-e.g.
-	
-	python antifraud.py ../paymo_input/batch_payment.csv ../paymo_input stream_payment.csv ../paymo_output/
-
-Syntax 2: specify test case folder name inside insight_testsuit/tests folder
-	python antifraud.py <test case name>
-
-e.g.
-
-	python antifraud.py test-2-graph-search
-
-### Demo 1: On the given real data graph with 3,938,414 transactions
+### Demo: Test search performance on the given real data graph with 3,938,414 transactions
 
 findConnectionDegree(graph, 0, 1202, 4) took 0.0130000114 sec
 	
@@ -159,9 +138,30 @@ To replicate, open python shell in src/ and paste the following:
 
 **Returns shortest path length 3 and time 0.0131009389 sec** 
 
-This is adequate performance.
+This is promising but thorough testing is done in results section.
 
-### Demo 2: Test-case test-2-graph-search contained in \insight_test_suite\tests\
+
+##Usage
+The following module implements the functionality on **Python 2.7**:
+
+	\src\antifraud.py
+
+Syntax 1: specify batch, input file and output folder
+
+	python antifraud.py <batch payment file> <stream payment file> <output path>
+
+e.g.
+	
+	python antifraud.py ../paymo_input/batch_payment.csv ../paymo_input stream_payment.csv ../paymo_output
+
+Syntax 2: specify test case folder name inside insight_testsuit/tests folder
+	python antifraud.py <test case name>
+
+e.g.
+
+	python antifraud.py test-2-graph-search
+
+### Demo: Test-case test-2-graph-search contained in \insight_test_suite\tests\
 
 #### Inputs (only id1 and id2 are relevant):
 
