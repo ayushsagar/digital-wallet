@@ -56,7 +56,6 @@ class Graph:
         
     
     def getNeighbors(self, node):
-        ''' Returns node neighbors'''
         try:
             return self.adjacencyList[node]
         except KeyError:
@@ -95,6 +94,8 @@ def findConnectionDegree(graph, source, target, max_depth):
 
 
 def processStream(graph, inputStreamFile, outputStreamFile, feature, skipHeader=True):
+    '''Contructs graph and processes input stream files. 
+    Returns line count when input stream file finishes for benchmarking purposes'''
     with open(inputStreamFile, 'r') as inputStream, open(outputStreamFile, 'w') as outputStream:
 
         lineCount = 0 # counting for later benchmarking
@@ -132,6 +133,7 @@ def processStream(graph, inputStreamFile, outputStreamFile, feature, skipHeader=
 
 if __name__ == "__main__":
     def processAll(batch_input, stream_input, output_folder):
+        '''Run script for all three features and time execution for each'''
         print "Constructing graph from batch file...", 
         start_time = time.time()
         graph = Graph(batch_input, True)
