@@ -95,13 +95,13 @@ Notice that columns in transaction record such as time-stamp, amount and message
 ### 2. Graph Search
 Once the graph is constructed from batch payment data, the next step is to be able to find degree of connection between two users given in stream data.
 
-Finding the degree of connection is the problem of finding if length of shortest path between two nodes, where distance of each edge is 1.
+Finding the degree of connection is the problem of finding if length of shortest path between two nodes where distance of each edge is 1.
 
 There are two ways of doing this:
 
 1. Using dynamic programming to find and store all shortest paths: Floyd-Warshall algorithms and its variants fall under this category. Although this may look like an efficient approach, the problem is that adding edges or removing vertices will require re-computation of shortest paths and it is therefore not scalable. 
 
-2. Find shortest-path between two giving edge: A natural way of doing this would be Dijkstra's algorithm for shortest path and it's variants. However, in this problem, we're limited to find degree of connections not larger than 4. This means that during path search, we do not have to traverse beyond 4 steps. The iterative deepening DFS would take advantage of this fact and hence this is being used.
+2. Find shortest-path between two giving edge: A natural way of doing this would be Dijkstra's algorithm for shortest path and its variants. However, in this problem, we're limited to find degree of connections not larger than 4. This means that during path search, we do not have to traverse beyond 4 steps. The iterative deepening DFS would take advantage of this fact and hence this is being used.
 
 **Pseudocode:**
 
