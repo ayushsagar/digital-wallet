@@ -5,8 +5,8 @@
 Given a list of transactions between two users (batch data), determine trustworthiness of given transaction (streaming data) using 3 different rules:
 
 * Rule/Feature 1: Check if a prior transaction has occurred between two parties. 
-* Rule/Feature 2: Check for triadic closure / 2nd degree relationship 
-* Rule/Feature 3: Check for transitive closure of at most 4 degrees. i.e. check if two parties are connected by at most 3 people in between.
+* Rule/Feature 2: Check for triadic closure or 2nd degree relationship 
+* Rule/Feature 3: Check if degree of connection is less than or equal to 4.
 
 For each transaction the program returns "trusted" if one of the above rules satisfy and "unverified" otherwise. Only one rule is applied on the streaming data at a time and saved into respective files: output1.txt, output2.txt and so on.
 
