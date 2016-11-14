@@ -10,6 +10,8 @@ Given a list of transactions between two users (batch data), determine trustwort
 
 For each transaction the program returns "trusted" if one of the above rules satisfy and "unverified" otherwise. Only one rule is applied on the streaming data at a time and saved into respective files: output1.txt, output2.txt and so on.
 
+[Original Problem Specifications](https://github.com/InsightDataScience/digital-wallet)
+
 ## Approach
 ### 1. Graph Construction
 A social network can be represented by a graph. Each node can represent a person. Any transaction between two persons would connect their respective nodes. This connection is called an edge. Let V be the set of nodes or vertices in this graph and E be the set of edges.
