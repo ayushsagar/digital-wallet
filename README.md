@@ -103,7 +103,7 @@ There are two ways of doing this:
 
 **Pseudocode:**
 
-	function IDDFS(root, depth)
+	function IDDFS(root, depth, max_depth)
 	    for depth from 0 to max_depth
 	        found ← DLS(root, depth)
 	        if found ≠ null
@@ -119,15 +119,16 @@ There are two ways of doing this:
 	                return found
 	    return null
 
+The function IDDFS takes two nodes & max depth and returns depth if a shortest path is found within max_depth. Otherwise it returns None.
+
 The time complexity is O(*b*^*d*) and space-complexity is O(*b***d*). *b* is the branching factor. The average branching factor would be the average no. of users each user is connected to. Therefore *b* is expected to be low. Depth *d* is 4 in this case. Therefore, this algorithms appears suitable to the problem.
 
 The implementation can be used to implement feature 1 and 2 with d = 1 and 2 respectively.
 
-### Demo: Test search performance on the given real data graph with 3,938,414 transactions
+### Demo: Test search performance by evaluating on real data graph with 3,938,414 transactions
 
-findConnectionDegree(graph, 0, 1202, 4) took 0.0130000114 sec
+Shortest path search in graph for transaction with id1 = 0 and id2 = 1202 is done calling findConnectionDegree(graph, 0, 1202, 4).
 	
-To replicate, open python shell in src/ and paste the following:
 
 	from antifraud import *
 	graph = Graph("../paymo_input/batch_payment.csv", True)
@@ -136,9 +137,11 @@ To replicate, open python shell in src/ and paste the following:
 	print findConnectionDegree(graph, 0, 1202, 4)
 	print("%0.12s sec"% (time.time() - start_time))
 
-**Returns shortest path length 3 and time 0.0131009389 sec** 
+**3**
 
-This is promising but thorough testing is done in results section.
+**0.0131009389 sec** 
+
+3 was the length of shortest-path or degree of connection. It took 0.0131 sec for finding the path. This is promising but thorough testing is done in results section.
 
 
 ##Usage
