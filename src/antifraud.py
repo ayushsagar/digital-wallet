@@ -141,7 +141,7 @@ if __name__ == "__main__":
         graph = Graph(batch_input, True)
         print("%s sec" % (time.time() - start_time))
         
-        for feature in [1]:
+        for feature in [1,2,3]:
             stream_output = output_folder + "/output" + str(feature) + ".txt"
             print "Processing stream file and saving feature %d output..." %feature, 
             start_time = time.time()
