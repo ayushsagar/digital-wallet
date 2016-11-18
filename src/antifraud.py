@@ -128,8 +128,6 @@ def processStream(graph, inputStreamFile, outputStreamFile, feature, skipHeader=
                 outputStream.write(outputStr)
 
             lineCount += 1
-    inputStream.close()
-    outputStream.close()
     return lineCount
 
 
